@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub | Ram Sir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff6b9d;
+            --dark: #0a0a16;
+            --darker: #050510;
+            --light: #f0f0f0;
+            --card-bg: rgba(20, 20, 40, 0.8);
+            --gradient: linear-gradient(135deg, #6e45e2, #88d3ce, #ff6b9d);
+            --gradient-dark: linear-gradient(135deg, #4a2bb5, #5aa8a3, #e84393);
+            --neon-glow: 0 0 10px rgba(110, 69, 226, 0.7), 0 0 20px rgba(110, 69, 226, 0.5), 0 0 30px rgba(110, 69, 226, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-family: 'Exo 2', sans-serif;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(110, 69, 226, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(136, 211, 206, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 30%);
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(10, 10, 22, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(110, 69, 226, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            border-image: var(--gradient) 1;
+        }
+
+        .welcome {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(136, 211, 206, 0.7);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(136, 211, 206, 0.3);
+            border-radius: 5px;
+            background: rgba(10, 10, 22, 0.7);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.6;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(10, 10, 22, 0.9), rgba(110, 69, 226, 0.2), rgba(10, 10, 22, 0.9));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--secondary);
+            animation: fadeInUp 1.2s ease-out;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-dark);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(110, 69, 226, 0.6);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            width: 30px;
+            height: 30px;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 40%;
+            left: 70%;
+            width: 35px;
+            height: 35px;
+            animation-delay: 6s;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 8rem 2rem;
+            background: var(--darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .categories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(110, 69, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(136, 211, 206, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(110, 69, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(110, 69, 226, 0.4), 0 0 30px rgba(110, 69, 226, 0.2);
+        }
+
+        .category-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            transition: left 0.4s ease;
+        }
+
+        .tool-item:hover::before {
+            left: 0;
+        }
+
+        .tool-item:hover {
+            background: rgba(110, 69, 226, 0.15);
+            transform: translateX(10px);
+            border: 1px solid rgba(110, 69, 226, 0.3);
+        }
+
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
+        }
+
+        .tool-info {
+            flex: 1;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            color: var(--light);
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .tool-description {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .tool-type {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .free {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.5);
+        }
+
+        .paid {
+            background: rgba(233, 30, 99, 0.2);
+            color: #E91E63;
+            border: 1px solid rgba(233, 30, 99, 0.5);
+        }
+
+        /* Trainer Section */
+        .trainer {
+            padding: 8rem 2rem;
+            background: var(--dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trainer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 20%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 80%, rgba(136, 211, 206, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .trainer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trainer-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 30px rgba(110, 69, 226, 0.5);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .trainer-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .trainer-image::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: var(--dark);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .trainer-info {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .trainer-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .trainer-info p {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-dark);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(110, 69, 226, 0.6);
+        }
+
+        .social-links i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(110, 69, 226, 0.3);
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: #777;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(110, 69, 226, 0.7);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(110, 69, 226, 0.9), 0 0 30px rgba(110, 69, 226, 0.6);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        @keyframes float-icon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .trainer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .trainer-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .welcome {
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .category-card {
+                padding: 1.8rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Samyak</div>
+        <div class="welcome">Welcome Students</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-background-34453-large.mp4" type="video/mp4">
+        </video>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Master AI Tools with Samyak Computer Classes</h1>
+            <p>Unlock the power of Artificial Intelligence with our comprehensive collection of cutting-edge tools for every domain</p>
+            <button class="cta-button">Explore Tools</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">AI Tools Categories</h2>
+        <div class="category-grid">
+            <!-- Category 1: Image Creation -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3 class="category-title">Image Creation</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-palette"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Midjourney</span>
+                            <span class="tool-description">AI art generator from text prompts</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-paint-brush"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">DALL-E 2</span>
+                            <span class="tool-description">Create realistic images from descriptions</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-magic"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Stable Diffusion</span>
+                            <span class="tool-description">Open source image generation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-cube"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Runway ML</span>
+                            <span class="tool-description">Creative suite for artists</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Artbreeder</span>
+                            <span class="tool-description">Create and explore visual worlds</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-paint-roller"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">DreamStudio</span>
+                            <span class="tool-description">Stable Diffusion web interface</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-vector-square"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">NightCafe</span>
+                            <span class="tool-description">AI art generator with multiple models</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-palette"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Deep Dream Generator</span>
+                            <span class="tool-description">Create dream-like images</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Text Creation -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-font"></i>
+                </div>
+                <h3 class="category-title">Text Creation</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-keyboard"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">ChatGPT</span>
+                            <span class="tool-description">Advanced conversational AI</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Jasper</span>
+                            <span class="tool-description">AI content generator for marketing</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-pen-fancy"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Copy.ai</span>
+                            <span class="tool-description">Generate marketing copy in seconds</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-book"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Claude</span>
+                            <span class="tool-description">AI assistant for complex tasks</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-edit"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Writer</span>
+                            <span class="tool-description">AI writing assistant for teams</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-newspaper"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Article Forge</span>
+                            <span class="tool-description">Automated article writing</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-language"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Grammarly</span>
+                            <span class="tool-description">AI-powered writing assistant</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-pencil-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Writesonic</span>
+                            <span class="tool-description">AI writer for marketing content</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Prompt to Video -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="category-title">Prompt to Video</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-film"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Runway Gen-2</span>
+                            <span class="tool-description">Text to video generation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-play-circle"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Pika Labs</span>
+                            <span class="tool-description">Create and edit videos with AI</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-photo-video"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Stable Video</span>
+                            <span class="tool-description">Open source video generation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-tv"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Synthesia</span>
+                            <span class="tool-description">Create videos with AI avatars</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-video-slash"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Lumen5</span>
+                            <span class="tool-description">Turn blog posts into videos</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-film"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">InVideo</span>
+                            <span class="tool-description">AI video creation platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-video"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Pictory</span>
+                            <span class="tool-description">Create videos from text</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-closed-captioning"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Descript</span>
+                            <span class="tool-description">Edit videos by editing text</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Code Generation -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="category-title">Code Generation</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">GitHub Copilot</span>
+                            <span class="tool-description">AI pair programmer</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-terminal"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Tabnine</span>
+                            <span class="tool-description">AI code completion</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Replit AI</span>
+                            <span class="tool-description">Code generation and explanation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Amazon CodeWhisperer</span>
+                            <span class="tool-description">ML-powered code suggestions</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-code-branch"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">CodeT5</span>
+                            <span class="tool-description">Open source code generation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-bug"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Kite</span>
+                            <span class="tool-description">AI-powered coding assistant</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-file-code"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Codota</span>
+                            <span class="tool-description">AI code completions for Java</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-project-diagram"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">SourceAI</span>
+                            <span class="tool-description">AI-powered code generator</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 5: Voice & Audio -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3 class="category-title">Voice & Audio</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-volume-up"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Murf AI</span>
+                            <span class="tool-description">Text to speech with realistic voices</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-music"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">AIVA</span>
+                            <span class="tool-description">AI music composition</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-headphones"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Lalal.ai</span>
+                            <span class="tool-description">AI audio separation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-wave-square"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Synthesys</span>
+                            <span class="tool-description">Create studio-quality voiceovers</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Respeecher</span>
+                            <span class="tool-description">Voice conversion technology</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-guitar"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Amper Music</span>
+                            <span class="tool-description">AI music composition platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-drum"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Boomy</span>
+                            <span class="tool-description">Create original songs instantly</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-record-vinyl"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">LANDR</span>
+                            <span class="tool-description">AI-powered music mastering</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 6: Data Analysis -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="category-title">Data Analysis</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-database"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Akkio</span>
+                            <span class="tool-description">No-code AI analytics</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Obviously AI</span>
+                            <span class="tool-description">Predictive analytics platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-table"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Google Sheets AI</span>
+                            <span class="tool-description">AI-powered spreadsheet analysis</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">DataRobot</span>
+                            <span class="tool-description">Enterprise AI platform</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Tableau</span>
+                            <span class="tool-description">AI-powered data visualization</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-project-diagram"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">RapidMiner</span>
+                            <span class="tool-description">Data science platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">H2O.ai</span>
+                            <span class="tool-description">Open source AI platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-network-wired"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">KNIME</span>
+                            <span class="tool-description">Data analytics platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 7: Productivity -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3 class="category-title">Productivity</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Clockwise</span>
+                            <span class="tool-description">AI time management calendar</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-sticky-note"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Mem</span>
+                            <span class="tool-description">Self-organizing workspace</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Taskade</span>
+                            <span class="tool-description">AI-powered task management</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-list-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Notion AI</span>
+                            <span class="tool-description">AI assistant for Notion</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Motion</span>
+                            <span class="tool-description">AI project manager</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-clock"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Reclaim AI</span>
+                            <span class="tool-description">Smart calendar scheduling</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">X.ai</span>
+                            <span class="tool-description">AI meeting scheduling assistant</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Trevor AI</span>
+                            <span class="tool-description">AI personal productivity assistant</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 8: Research & Education -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="category-title">Research & Education</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-search"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Consensus</span>
+                            <span class="tool-description">AI-powered research search engine</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">ChatPDF</span>
+                            <span class="tool-description">Chat with any PDF document</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-microscope"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Scite</span>
+                            <span class="tool-description">AI for scientific article validation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-flask"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Jenni AI</span>
+                            <span class="tool-description">AI assistant for academic writing</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">QuillBot</span>
+                            <span class="tool-description">AI paraphrasing tool</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-pencil-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Wordtune</span>
+                            <span class="tool-description">AI writing assistant</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-book"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Scholarcy</span>
+                            <span class="tool-description">AI summarization tool for research</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Khan Academy</span>
+                            <span class="tool-description">AI-powered learning platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 9: Marketing -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="category-title">Marketing</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Phrasee</span>
+                            <span class="tool-description">AI-powered marketing copy</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-hashtag"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Lately</span>
+                            <span class="tool-description">AI social media content generator</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-share-alt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Buffer</span>
+                            <span class="tool-description">AI social media management</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-search-dollar"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">AdCreative.ai</span>
+                            <span class="tool-description">AI-generated ad creatives</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Persado</span>
+                            <span class="tool-description">AI for marketing language</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Albert</span>
+                            <span class="tool-description">AI for digital advertising</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Crayon</span>
+                            <span class="tool-description">AI market intelligence</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-users"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">HubSpot</span>
+                            <span class="tool-description">AI-powered CRM platform</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 10: Business & Finance -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="category-title">Business & Finance</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Zapier</span>
+                            <span class="tool-description">AI workflow automation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-receipt"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Rossum</span>
+                            <span class="tool-description">AI document processing</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-balance-scale"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Kira Systems</span>
+                            <span class="tool-description">AI for contract analysis</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">AlphaSense</span>
+                            <span class="tool-description">AI market intelligence</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Kensho</span>
+                            <span class="tool-description">AI for financial analysis</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Ayasdi</span>
+                            <span class="tool-description">AI for financial risk modeling</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Narrative Science</span>
+                            <span class="tool-description">AI for financial reporting</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Cognitivescale</span>
+                            <span class="tool-description">AI for business processes</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 11: Healthcare -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3 class="category-title">Healthcare</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-stethoscope"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Butterfly Network</span>
+                            <span class="tool-description">AI-powered medical imaging</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-pills"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Atomwise</span>
+                            <span class="tool-description">AI for drug discovery</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-dna"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Deep Genomics</span>
+                            <span class="tool-description">AI for genetic medicine</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-user-md"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">PathAI</span>
+                            <span class="tool-description">AI for pathology</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Zebra Medical</span>
+                            <span class="tool-description">AI for medical imaging analysis</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-heart"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Cardiologs</span>
+                            <span class="tool-description">AI for cardiac monitoring</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-eye"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">IDx-DR</span>
+                            <span class="tool-description">AI for diabetic retinopathy</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-lungs"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Viz.ai</span>
+                            <span class="tool-description">AI for stroke detection</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 12: Gaming -->
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3 class="category-title">Gaming</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-dice"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Promethean AI</span>
+                            <span class="tool-description">AI for game asset creation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-chess"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Latent Space</span>
+                            <span class="tool-description">AI for game level generation</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Spirit AI</span>
+                            <span class="tool-description">AI for game character dialogue</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-vr-cardboard"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Modl.ai</span>
+                            <span class="tool-description">AI for game testing</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">AiGameDev</span>
+                            <span class="tool-description">AI for game development</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-headset"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Unity ML-Agents</span>
+                            <span class="tool-description">AI training in Unity</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-magic"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Ludo AI</span>
+                            <span class="tool-description">AI for board game design</span>
+                        </div>
+                        <span class="tool-type free">Free</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon"><i class="fas fa-dragon"></i></div>
+                        <div class="tool-info">
+                            <span class="tool-name">Scenario</span>
+                            <span class="tool-description">AI for game asset generation</span>
+                        </div>
+                        <span class="tool-type paid">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Trainer Section -->
+    <section class="trainer">
+        <h2 class="section-title">Meet Your Trainer</h2>
+        <div class="trainer-container">
+            <div class="trainer-image">
+                <i class="fas fa-user-graduate"></i>
+                <img src="me.png" alt="">
+            </div>
+            <div class="trainer-info">
+                <h3>Ram Sir</h3>
+                <p>With over 2+ years of experience in Technical Training, Ram Sir has trained Hundareds of students in cutting-edge technologies. His practical approach to teaching complex concepts makes him one of the most sought-after instructors in the field.</p>
+                <p>Ram Sir holds a B.Tech in Information Technology and has worked with leading tech companies to implement AI solutions. His mission is to make AI education accessible to everyone.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ramgopal-prajapati-b30237264/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/iammrengineer/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="www.github.com/Ramgopal-prajapati"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Ram Sir</div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">AI Tools</a>
+                <a href="#">Courses</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <p class="copyright">© 2025Designed with ❤️ for AI Enthusiasts</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const animationDuration = Math.random() * 30 + 20;
+                const animationDelay = Math.random() * 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add scroll animation for cards
+            const cards = document.querySelectorAll('.category-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp 0.8s ease-out forwards`;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                observer.observe(card);
+            });
+            
+            // CTA button interaction
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function() {
+                document.querySelector('.categories').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
+    </script>
+</body>
+</html>
